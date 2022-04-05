@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package transport_catalogue_proto;
+
+
+message Bus {
+    uint64 id = 1;
+    repeated uint64 end_stops_id = 2;
+    string name = 3;
+    repeated uint64 stops_id = 4;
+}
+
+message RoadDistances {
+    uint64 to_stop_id = 1;
+    double distances = 2;
+}
+
+message Stop {
+    uint64 id = 1;
+    double latitude = 2;
+    double longitude = 3;
+    string name = 4;
+    repeated RoadDistances road_distances = 5;
+}
+
+message GraphSetting {
+    uint32 wait = 1;
+    double speed =2;
+}
+
+message ColorRGB {
+    uint32 r = 1;
+    uint32 g = 2;
+    uint32 b = 3;
+    
+}
+
+
+message ColorRGBA {
+    uint32 r = 1;
+    uint32 g = 2;
+    uint32 b = 3;
+    double alpha = 4;
+}
+
+message ColorString {
+    string color = 1;
+}
+
+message Color {
+    ColorRGBA color_rgba  = 1;
+    ColorRGB color_rgb = 2;
+    ColorString str_color = 3;
+}
+
+message RenderSettings {
+    double width = 1;
+    double height = 2;
+    double padding = 3;
+    double line_width = 4;
+    double stop_radius = 5;
+    uint32 bus_label_font_size = 6;
+    double bus_label_offset_dx = 7;
+    double bus_label_offset_dy = 8;
+    uint32 stop_label_font_size = 9;
+    double stop_label_offset_dx = 10;
+    double stop_label_offset_dy = 11;
+    Color  underlayer_color = 12;
+    double underlayer_width = 13;
+    repeated Color colors_pallete = 14;
+}
+
+message DB {
+    repeated Stop stops = 1;
+    repeated Bus buses = 2;
+    GraphSetting graph_setting = 3;
+    RenderSettings render_setting = 4;
+
+}
